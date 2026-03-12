@@ -16,7 +16,7 @@ data:
   PORT: "1337"
   
   # Next.js Frontend Configuration
-  NEXT_PUBLIC_API_URL: "https://api.test.felix-nguyen.de"
+  NEXT_PUBLIC_API_URL: "https://api.felix-nguyen.de"
   NEXT_PUBLIC_BASE_URL: "https://test.felix-nguyen.de"
   NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: "G-XXXXXXXXXX"
   SMTP_HOST: "smtp.strato.de"
