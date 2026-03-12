@@ -32,8 +32,6 @@ spec:
         ports:
         - containerPort: 1337
         envFrom:
-        - name: STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE
-          value: "de-DE"
         - configMapRef:
             name: app-config
         - secretRef:
