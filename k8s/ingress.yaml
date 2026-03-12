@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: felix-app-ingress
+  namespace: felix-app
+  annotations:
+    caddy.ingress.networking.k8s.io/mode: "server"
+spec:
+  ingressClassName: caddy
+  rules:
+  # Next.js Frontend
+  - host: "test.felix-nguyen.de"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: next
+            port:
+              number: 3000
+  - host: "www.test.felix-nguyen.de"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: next
+            port:
+              number: 3000
+  
+  # Strapi Backend
+  - host: "api.felix-nguyen.de"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: strapi
+            port:
+              number: 1337

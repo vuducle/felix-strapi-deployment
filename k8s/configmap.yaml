@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: felix-app
+data:
+  # Database Configuration
+  DATABASE_CLIENT: postgres
+  DATABASE_HOST: db
+  DATABASE_PORT: "5432"
+  DATABASE_NAME: "strapi"
+  DATABASE_USERNAME: "strapi"
+  
+  # Strapi Backend Configuration
+  HOST: "0.0.0.0"
+  PORT: "1337"
+  
+  # Next.js Frontend Configuration
+  NEXT_PUBLIC_API_URL: "https://api.test.felix-nguyen.de"
+  NEXT_PUBLIC_BASE_URL: "https://test.felix-nguyen.de"
+  NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: "G-XXXXXXXXXX"
+  SMTP_HOST: "smtp.strato.de"
+  SMTP_PORT: "465"
+  SMTP_USER: "no-reply@felix-nguyen.de"
+  SMTP_FROM: "no-reply@felix-nguyen.de"
+  COMPANY_EMAIL: "info@felix-nguyen.de"
+  RECAPTCHA_SITE_KEY: "6Lf-YXUsAAAAAHtCvN_Q8CP-nO76E7ARiCpgUHS2"

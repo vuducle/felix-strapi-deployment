@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: next-caddy-config
+  namespace: felix-app
+data:
+  Caddyfile: |
+    :3000 {
+        # Secure the application with basic auth:
+        basicauth / {
+            admin $2a$14$KqJrhdJ2ALXXR3Aeo3xrG.h/BoYTGK0JPVORbBqVLyo3zor6CjZ/u
+        }
+        
+        # Proxy traffic directly to the Next.js app running inside the same Pod
+        reverse_proxy 127.0.0.1:3001
+    }

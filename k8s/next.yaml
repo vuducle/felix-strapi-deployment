@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: next
+  namespace: felix-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: next
+  template:
+    metadata:
+      labels:
+        app: next
+    spec:
+      containers:
+      # --- Caddy Sidecar for Basic Auth ---
+      - name: auth-proxy
+        image: caddy:2-alpine
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: caddy-config
+          mountPath: /etc/caddy/Caddyfile
+          subPath: Caddyfile
+      # --- Next.js Application ---
+      - name: next
+        image: ghcr.io/vuminhle1997/felix-nguyen-strapi-next:v1.0.5
+        imagePullPolicy: Always
+        # Next.js defaults to port 3000, so we shift it to 3001
+        # The Caddy sidecar listens on 3000, authenticates, and forwards to 3001
+        env:
+        - name: PORT
+          value: "3001"
+        envFrom:
+        - configMapRef:
+            name: app-config
+        - secretRef:
+            name: app-secrets
+      volumes:
+      - name: caddy-config
+        configMap:
+          name: next-caddy-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: next
+  namespace: felix-app
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+  selector:
+    app: next

@@ -1,0 +1,2 @@
+*.pem
+k8s/secret-template.yaml

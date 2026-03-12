@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: felix-app
+
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - next-auth-configmap.yaml
+  - db.yaml
+  - strapi.yaml
+  - next.yaml
+  - ingress.yaml
+  - sealed-secret.yaml
+  
+# Optional: generate ConfigMap directly from properties or .env instead of tracking raw configmap.yaml
+# Here we keep configmap.yaml tracked for standard simplicity.
+
+# Note: Once you generate sealed-secret.yaml using kubeseal,
+# you should add it to the 'resources' list above instead of the raw secret template.
