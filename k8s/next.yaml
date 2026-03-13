@@ -25,7 +25,7 @@ spec:
           subPath: Caddyfile
       # --- Next.js Application ---
       - name: next
-        image: ghcr.io/vuminhle1997/felix-nguyen-strapi-next:v1.1.0
+        image: ghcr.io/vuminhle1997/felix-nguyen-strapi-next:v1.1.1
         imagePullPolicy: Always
         # Next.js defaults to port 3000, so we shift it to 3001
         # The Caddy sidecar listens on 3000, authenticates, and forwards to 3001
