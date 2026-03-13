@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: strapi
-        image: ghcr.io/vuminhle1997/felix-nguyen-strapi-strapi:v1.0.5
+        image: ghcr.io/vuminhle1997/felix-nguyen-strapi-strapi:v1.1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 1337
